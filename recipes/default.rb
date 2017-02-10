@@ -36,6 +36,7 @@ if node['s3fs']['build_from_source']
     # install fuse
     remote_file "#{Chef::Config[:file_cache_path]}/fuse-#{node['fuse']['version']}.tar.gz" do
       source uri_join(node['s3fs']['fuse']['uri'], "#{get_release_path(node['fuse']['version'])}/fuse-#{node['fuse']['version']}.tar.gz").to_s
+      use_last_modified false # true by default
       mode 0644
       action :create_if_missing
     end
